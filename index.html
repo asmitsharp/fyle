@@ -46,7 +46,6 @@
     <div id="loader"></div>
 
     <script>
-      const accessToken = "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"
       const username = "kunal-kushwaha"
       const perPageOptions = [10, 30, 50, 100]
       let currentPage = 1
@@ -83,11 +82,7 @@
         const loader = document.getElementById("loader")
         loader.style.display = "block"
 
-        fetch(`https://api.github.com/users/${username}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
+        fetch(`https://api.github.com/users/${username}`)
           .then((response) => response.json())
           .then((user) => {
             updateUserDetails(user)
@@ -97,11 +92,7 @@
           )
 
         const apiUrl = `https://api.github.com/users/${username}/repos?per_page=${currentPerPage}&page=${currentPage}`
-        fetch(apiUrl, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
+        fetch(apiUrl)
           .then((response) => response.json())
           .then((repositories) => {
             updateRepositories(repositories)
